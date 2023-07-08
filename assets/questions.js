@@ -1,13 +1,7 @@
 // defining set of questions
 var questions = [
     {
-        question: "Is JavaScript case-sensitive?",
-        choices: ["a. Yes", "b. No"],
-        answer: "a. Yes"
-    },
-
-    {
-        question: "Inside which HTML elemend do we put the JavaScript?",
+        question: "Inside which HTML element do we put the JavaScript?",
         choices: ["a. <js>", "b. <script>", "c. <scripting>", "d. <javascript>"],
         answer: "b. <script>"
     },
@@ -63,23 +57,26 @@ var timeContainer = document.querySelector("#time-container");
 var timeLeft = document.querySelector("#time-left");
 
 // start container related var
-var starter = document.querySelector("#starter");
+var mainStart = document.querySelector("#main-start");
 var startBtn = document.querySelector("#start-btn");
 var viewHighscore = document.querySelector("#viewHighScore");
 
 // question container related var
-var questionContainer = document.querySelector("#question-container");
-var question = document.querySelector("#question");
+var questionContainer = document.querySelector("#question-container")
+var questionText = document.querySelector("#question-text");
 // var options = document.querySelector("#options");
-var optionA = document.querySelector("#option-A");
-var optionB = document.querySelector("#option-B");
-var optionC = document.querySelector("#option-C");
-var optionD = document.querySelector("#option-D");
+var choiceA = document.querySelector("#choice-A");
+var choiceB = document.querySelector("#choice-B");
+var choiceC = document.querySelector("#choice-C");
+var choiceD = document.querySelector("#choice-D");
 var answerCheck = document.querySelector("#answer-check");
 
+// results container related var
+var results = document.querySelector("#results")
+
 //declaring var
-var score;
-var questionArray;
+var questionArray = 0;
+var score = 0;
 
 var timeCountdown = 45;
 var timePenalty = 10;
@@ -87,16 +84,34 @@ var timePenalty = 10;
 
 // start timer function
 
-startBtn.addEventListener("click", startQuiz)
+startBtn.addEventListener("click", startTimer)
+
+function startTimer() {
+    timerInterval = setInterval(function () {
+        timeCountdown--;
+        timeLeft.textContent = timeCountdown;
+
+        if (timeCountdown === 0) {
+            clearInterval(timerInterval);
+            timeContainer.textContent = "Time's Up!";
+        }
+    }, 1000);
+    startQuiz();
+}
+
+// initiating questions
 
 function startQuiz() {
-        timerInterval = setInterval(function () {
-            timeCountdown--;
-            timeLeft.textContent = timeCountdown;
+    mainStart.style.display = "none";
+    questionContainer.removeAttribute("hidden");
+    quizQuestions();
+}
 
-            if (timeLeft === 0) {
-                clearInterval(timerInterval);
-                timeLeft.textContent = "Time's Up!";
-            }
-        }, 1000);
-};
+// presenting questions
+function quizQuestions() {
+    questionText.textContent = questions[questionArray].question;
+    choiceA.textContent = questions[questionArray].choices[0];
+    choiceB.textContent = questions[questionArray].choices[1];
+    choiceC.textContent = questions[questionArray].choices[2];
+    choiceD.textContent = questions[questionArray].choices[3];
+}

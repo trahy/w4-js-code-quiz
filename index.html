@@ -12,13 +12,13 @@
 
     <header>
         <a id="viewHighScore" href="assets/highscore.html"> View High Score</a>
-        <div>⏱️Time: <span id="time-left">45</span></div>
+        <div id="time-container">⏱️Time: <span id="time-left">45</span></div>
     </header>
 
     <section id="container">
         <main>
-            <div id="starter">
-                <h2 id="title">JavaScript Quiz Challenge</h2>
+            <div id="main-start">
+                <h2>JavaScript Quiz Challenge</h2>
                 <p id="description">Answer a series of questions within the time limit. Incorrect answers will reduce
                     the time by 10 seconds!</p>
                 <button id="start-btn" class="button">Start Quiz</button>
@@ -26,18 +26,18 @@
         </main>
 
         <section hidden id="question-container">
-            <h2 id="question"></h2>
-            <div id="options">
-                <button id="option-A" class="option-btn"></button>
-                <button id="option-B" class="option-btn"></button>
-                <button id="option-C" class="option-btn"></button>
-                <button id="option-D" class="option-btn"></button>
-                <hr>
-                <p id="answer-check"></p>
+            <h2 id="question-text"></h2>
+            <div id="choices">
+                <button id="choice-A" class="choice-button"></button>
+                <button id="choice-B" class="choice-button"></button>
+                <button id="choice-C" class="choice-button"></button>
+                <button id="choice-D" class="choice-button"></button>
             </div>
+            <hr>
+            <p id="answer-check"></p>
         </section>
 
-        <section hidden id="summary">
+        <section hidden id="results">
             <h2>All done! Your final score is <span id="score"></span> !</h2>
             <form action="assets/highscore.html">
                 <label for="initials">Enter your initials:</label>

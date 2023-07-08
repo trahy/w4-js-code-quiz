@@ -2,8 +2,8 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-    margin: 0;
     text-decoration: none;
+    margin: 0;
 }
 
 :root {
@@ -39,7 +39,7 @@ body {
     margin-top: 100px;
 }
 
-#title {
+h2 {
     font-size: 2em;
 }
 
@@ -48,7 +48,8 @@ body {
     margin-bottom: 70px;
 }
 
-.button {
+.button,
+.choice-button {
     background-color: var(--pur500);
     font-size: 1em;
     border: none;
@@ -59,8 +60,18 @@ body {
     transition: 0.2s;
 }
 
-.button:hover {
+.button:hover,
+.choice-button:hover {
     background-color: var(--pur700);
+}
+
+#choices {
+    padding: 30px 0;
+}
+
+.choice-button {
+    display: block;
+    margin-bottom: 10px;
 }
 
 #hs-container {
