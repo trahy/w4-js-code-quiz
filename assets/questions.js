@@ -72,12 +72,14 @@ var choiceD = document.querySelector("#choice-D");
 var answerCheck = document.querySelector("#answer-check");
 
 // results container related var
-var results = document.querySelector("#results")
+var results = document.querySelector("#results");
+var score = document.querySelector("#score");
+var initials = document.querySelector("#initials");
+var submitBtn = document.querySelector("#submit-btn");
 
 //declaring var
 var questionArray = 0;
 var correctAnswer = 0;
-var score = 0;
 
 var timeCountdown = 45;
 var timePenalty = 10;
@@ -139,7 +141,6 @@ function checkAnswer(answer) {
         // deduct 10s if answer is incorrect
     } else {
         timeCountdown -= timePenalty;
-        timeLeft.textContent = timeCountdown;
         answerCheck.textContent = "❌ Incorrect! The correct answer is " + questions[questionArray].answer;
     }
 
@@ -155,4 +156,42 @@ function checkAnswer(answer) {
 function endQuiz() {
     results.hidden = false;
     questionContainer.hidden = true;
+    timeCountdown = 0
+    score.textContent = correctAnswer;
+    // console.log(correctAnswer);
 }
+
+// enter initials and store score into local storage
+submitBtn.addEventListener("click", function(event){ 
+    storeScore(event);
+});
+
+function storeScore(event) {
+    event.preventDefault();
+
+    if (initials.value === "") {
+        alert("Please enter your initials.");
+        return;
+    }
+
+    var savedScores = localStorage.getItem("savedScores");
+
+    if (savedScores === null) {
+        savedScores = [];
+    } else {
+        savedScores = JSON.parse(savedScores)
+    }
+
+    var userScore = {
+        initials: initials.value,
+        finalscore: score.textContent
+    };
+
+    savedScores.push(userScore);
+
+    var scorelistString = JSON.stringify(savedScores);
+    window.localStorage.setItem("savedScores", scorelistString);
+
+    location.replace("assets/highscore.html");
+}
+

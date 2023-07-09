@@ -30,7 +30,7 @@ header {
 }
 
 body {
-    background-color: #ffffff;
+    background-color: white;
 }
 
 #container {
@@ -81,9 +81,34 @@ h2 {
     margin-top: 10px;
 }
 
+#int-text,
+#intials,
+#submit-btn {
+    display: block;
+    margin-top: 15px;
+}
+
+#initials {
+    width: 40%;
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
 #hs-container {
-    background-color: yellow;
     width: 40%;
     margin: 0 auto;
     margin-top: 100px;
+}
+
+#highscore-list {
+    margin-top: 50px;
+    margin-bottom: 70px;
+    font-size: 1.15em;
+    line-height: 1.5em;
+}
+
+#clear-btn {
+    margin-left: 20px;
 }
