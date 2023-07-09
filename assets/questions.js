@@ -84,7 +84,6 @@ var timePenalty = 10;
 
 
 // start timer function
-
 startBtn.addEventListener("click", startTimer);
 
 function startTimer() {
@@ -92,19 +91,21 @@ function startTimer() {
         timeCountdown--;
         timeLeft.textContent = timeCountdown;
 
-        if (timeCountdown === 0) {
+        if (timeCountdown <= 0) {
             clearInterval(timerInterval);
             timeContainer.textContent = "Time's Up!";
+            if (questionArray < questions.length - 1) {
+                endQuiz();
+            }
         }
     }, 1000);
     startQuiz();
 }
 
 // initiating questions
-
 function startQuiz() {
     mainStart.style.display = "none";
-    questionContainer.removeAttribute("hidden");
+    questionContainer.hidden = false;
     nextQuestion();
 }
 
@@ -118,7 +119,6 @@ function nextQuestion() {
 }
 
 // quiz options button function
-
 choiceA.addEventListener("click", chooseA);
 choiceB.addEventListener("click", chooseB);
 choiceC.addEventListener("click", chooseC);
@@ -144,9 +144,15 @@ function checkAnswer(answer) {
     }
 
     questionArray++;
-    if (questionArray < questions.length){
+    if (questionArray < questions.length) {
         nextQuestion();
     } else {
-        gameOver();
+        endQuiz();
     }
+}
+
+// ends quiz when all questions are answered or time reaches 0
+function endQuiz() {
+    results.hidden = false;
+    questionContainer.hidden = true;
 }
