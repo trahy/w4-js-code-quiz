@@ -16,8 +16,6 @@ if (savedScores !== null) {
         scoreLi.textContent = savedScores[i].initials + ": " + savedScores[i].finalscore;
         highscoreLi.appendChild(scoreLi);
     }
-
-
 }
 
 // Event listener to move to index page

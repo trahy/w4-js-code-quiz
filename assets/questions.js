@@ -194,4 +194,3 @@ function storeScore(event) {
 
     location.replace("assets/highscore.html");
 }
-
