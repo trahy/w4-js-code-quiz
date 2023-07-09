@@ -64,7 +64,7 @@ var viewHighscore = document.querySelector("#viewHighScore");
 // question container related var
 var questionContainer = document.querySelector("#question-container")
 var questionText = document.querySelector("#question-text");
-// var options = document.querySelector("#options");
+var options = document.querySelector("#options");
 var choiceA = document.querySelector("#choice-A");
 var choiceB = document.querySelector("#choice-B");
 var choiceC = document.querySelector("#choice-C");
@@ -76,6 +76,7 @@ var results = document.querySelector("#results")
 
 //declaring var
 var questionArray = 0;
+var correctAnswer = 0;
 var score = 0;
 
 var timeCountdown = 45;
@@ -84,7 +85,7 @@ var timePenalty = 10;
 
 // start timer function
 
-startBtn.addEventListener("click", startTimer)
+startBtn.addEventListener("click", startTimer);
 
 function startTimer() {
     timerInterval = setInterval(function () {
@@ -104,14 +105,48 @@ function startTimer() {
 function startQuiz() {
     mainStart.style.display = "none";
     questionContainer.removeAttribute("hidden");
-    quizQuestions();
+    nextQuestion();
 }
 
-// presenting questions
-function quizQuestions() {
+// function to display questions
+function nextQuestion() {
     questionText.textContent = questions[questionArray].question;
     choiceA.textContent = questions[questionArray].choices[0];
     choiceB.textContent = questions[questionArray].choices[1];
     choiceC.textContent = questions[questionArray].choices[2];
     choiceD.textContent = questions[questionArray].choices[3];
+}
+
+// quiz options button function
+
+choiceA.addEventListener("click", chooseA);
+choiceB.addEventListener("click", chooseB);
+choiceC.addEventListener("click", chooseC);
+choiceD.addEventListener("click", chooseD);
+
+function chooseA() { checkAnswer(0); }
+function chooseB() { checkAnswer(1); }
+function chooseC() { checkAnswer(2); }
+function chooseD() { checkAnswer(3); }
+
+// function to check answers
+function checkAnswer(answer) {
+    // add point to score if answer is correct
+    if (questions[questionArray].answer === questions[questionArray].choices[answer]) {
+        correctAnswer++;
+        answerCheck.textContent = "✔️ Correct!"
+
+        // deduct 10s if answer is incorrect
+    } else {
+        timeCountdown -= timePenalty;
+        timeLeft.textContent = timeCountdown;
+        answerCheck.textContent = "❌ Incorrect! The correct answer is " + questions[questionArray].answer;
+    }
+
+    questionArray++;
+    if (questionArray < questions.length){
+        nextQuestion();
+    } else {
+        gameOver();
+    }
 }
