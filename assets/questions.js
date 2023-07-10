@@ -162,7 +162,7 @@ function endQuiz() {
 }
 
 // enter initials and store score into local storage
-submitBtn.addEventListener("click", function(event){ 
+submitBtn.addEventListener("click", function (event) {
     storeScore(event);
 });
 

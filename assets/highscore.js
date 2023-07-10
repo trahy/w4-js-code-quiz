@@ -8,10 +8,12 @@ var clearBtn = document.querySelector("#clear-btn");
 var savedScores = localStorage.getItem("savedScores");
 savedScores = JSON.parse(savedScores);
 
-savedScores.sort(function(a, b) {
+// sorts stored scores from highest to lowest
+savedScores.sort(function (a, b) {
     return parseFloat(b.finalscore) - parseFloat(a.finalscore);
 });
 
+// appends score to the initials
 if (savedScores !== null) {
 
     for (var i = 0; i < savedScores.length; i++) {
