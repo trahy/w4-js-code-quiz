@@ -12,7 +12,7 @@ N/A
 
 ## Usage
 
-Access the webpage using the deployed link [HERE]https://trahy.github.io/w4-js-code-quiz/
+Access the webpage using the deployed link [HERE](https://trahy.github.io/w4-js-code-quiz/).
 
 The objective of the game is to answer a total of 10 questions within 45 seconds.
 
